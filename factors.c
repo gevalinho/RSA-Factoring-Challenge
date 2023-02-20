@@ -1,4 +1,8 @@
 #include <stdio.h>
+/**
+ *  main - this is the running function
+ *  Return: 0
+ */
 
 int main(void)
 {
