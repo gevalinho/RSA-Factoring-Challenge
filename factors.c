@@ -1,28 +1,34 @@
-#include <stdio.h>
+#include "factor.h"
+
 /**
- *  main - this is the running function
- *  Return: 0
+ *  main - main function
+ *  Return: void
  */
+int main(int argc, char *argv[])
+{
+FILE *fptr;
+size_t count;
+ssize_t line;
+char *buffer = NULL;
 
-int main(void)
-{
-long long int num = 239809320265259;
-long int factor1 = 2;
-long int factor2;
 
-while (num % factor1)
+if (argc != 2)
 {
-if (factor1 <= num)
+fprintf(stderr, "Usage: factor <filename>\n");
+exit(EXIT_FAILURE);
+}
+fptr = fopen(argv[1], "r");
+if (fptr == NULL)
 {
-factor1++;
+fprintf(stderr, "Error: can't open file %s\n", argv[1]);
+exit(EXIT_FAILURE);
 }
-else
-{
-return (-1);
-}
-}
+while (line = getline(&buffer, &count, fptr)) != -1)
 
-factor2 = num / factor1;
-printf("%lld = %ld * %ld\n", num, factor2, factor1);
+{
+
+factorize(buffer);
+
+}
 return (0);
 }
